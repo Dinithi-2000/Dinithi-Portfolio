@@ -25,13 +25,19 @@
             --bg-primary: #0f0f23;
             --bg-secondary: #1a1a2e;
             --bg-card: #16213e;
+            --card-bg: #16213e;
+            --bg-light: #f8fafc;
             --text-primary: #ffffff;
             --text-secondary: #a1a1aa;
             --text-accent: #e4e4e7;
+            --text-dark: #ffffff;
+            --text-light: #a1a1aa;
             --gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #f59e0b 100%);
             --gradient-hover: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #d97706 100%);
             --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
         }
 
         body {
@@ -91,6 +97,7 @@
             left: 0;
             width: 100%;
             background: rgba(15, 15, 35, 0.95);
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             z-index: 1000;
             transition: all 0.3s ease;
@@ -161,6 +168,52 @@
             background: var(--gradient-hover);
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
+        }
+
+        /* Mobile menu styles */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(15, 15, 35, 0.98);
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100vh);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+            }
+
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .hire-btn {
+                display: none;
+            }
         }
 
         /* Hero Section */
@@ -661,6 +714,18 @@
             justify-content: center;
             color: white;
             font-size: 3rem;
+            overflow: hidden;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            color: white;
         }
 
         .project-card:nth-child(2) .project-image {
@@ -1025,8 +1090,97 @@
             }
         }
 
-        /* Responsive Design Updates */
+        /* Comprehensive Mobile Responsiveness */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0.5rem 0;
+            }
+
+            .nav-menu {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hire-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding-top: 140px;
+                min-height: 100vh;
+                padding-bottom: 3rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+                line-height: 1.1;
+            }
+
+            .hero-text .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .profile-card {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 1rem;
+            }
+
+            .tech-item {
+                padding: 1.5rem 0.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-tabs {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .tab-btn {
+                width: 200px;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
             .contact-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -1051,39 +1205,105 @@
                 gap: 1rem;
                 text-align: center;
             }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
         }
 
-        @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
+        @media (max-width: 480px) {
             .hero-text h1 {
-                font-size: 2.5rem;
+                font-size: 1.8rem;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
+            .service-card,
+            .tech-item,
+            .contact-card {
+                padding: 1.5rem;
             }
 
-            .nav-menu {
-                display: none;
-            }
-
-            .education-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
+            .project-info {
+                padding: 1rem;
             }
 
             .tech-grid {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-                gap: 1rem;
+                grid-template-columns: repeat(2, 1fr);
             }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+
+            .contact-form-wrapper {
+                padding: 1.5rem;
+            }
+
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .hero-text .subtitle {
+                font-size: 0.9rem;
+            }
+
+            .project-card {
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus states for better keyboard navigation */
+        .nav-menu a:focus,
+        .hire-btn:focus,
+        .cta-btn:focus,
+        .submit-btn:focus,
+        .project-link:focus,
+        .footer-social a:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Enhanced button states */
+        .cta-btn:disabled,
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Improved loading states */
+        .loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        /* Better error states for forms */
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        /* Success states for forms */
+        .form-group input.success,
+        .form-group select.success,
+        .form-group textarea.success {
+            border-color: #22c55e;
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
         }
 
         /* Scroll indicator */
@@ -1129,6 +1349,9 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
+                <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <a href="#contact" class="hire-btn">Hire Me</a>
             </div>
         </div>
@@ -1309,6 +1532,7 @@
             <div class="projects-grid">
                 <div class="project-card" data-category="web">
                     <div class="project-image">
+                        <img src="SeraniLux.png" alt="All in One Personal Assistance WebApp" class="project-img">
                     </div>
                     <div class="project-info">
                         <h5>All in One Personal Assistance WebApp</h5>
@@ -1335,6 +1559,7 @@
                 </div>
                 <div class="project-card" data-category="mobile">
                     <div class="project-image">
+                        <img src="Budgetlyst.png" alt="Finance Tracker App" class="project-img">
                     </div>
                     <div class="project-info">
                         <h5>Finance Tracker App</h5>
@@ -1358,6 +1583,7 @@
                 </div>
                 <div class="project-card" data-category="web">
                     <div class="project-image">
+                        <i class="fas fa-chalkboard-teacher project-icon"></i>
                     </div>
                     <div class="project-info">
                         <h5>Online Teacher Trainer Management System</h5>
@@ -1383,6 +1609,7 @@
                 </div>
                 <div class="project-card" data-category="web">
                     <div class="project-image">
+                        <i class="fas fa-video project-icon"></i>
                     </div>
                     <div class="project-info">
                         <h5>Online Video Browsing System</h5>
@@ -1509,7 +1736,7 @@
                         </div>
                         <div class="contact-details">
                             <h4>Phone</h4>
-                            <p>+94 77 123 4567<br>Available 9AM - 6PM</p>
+                            <p>+94 76 143 2403<br>Available 9AM - 6PM</p>
                         </div>
                     </div>
 
@@ -1822,51 +2049,12 @@
             });
         });
 
-        // Mobile menu toggle (if needed)
-        const mobileMenuBtn = document.createElement('button');
-        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-        mobileMenuBtn.style.display = 'none';
-        mobileMenuBtn.style.background = 'none';
-        mobileMenuBtn.style.border = 'none';
-        mobileMenuBtn.style.color = 'var(--text-primary)';
-        mobileMenuBtn.style.fontSize = '1.5rem';
-        mobileMenuBtn.style.cursor = 'pointer';
-        mobileMenuBtn.classList.add('mobile-menu-btn');
-
-        // Add mobile menu styles
-        const mobileStyle = document.createElement('style');
-        mobileStyle.textContent = `
-            @media (max-width: 768px) {
-                .mobile-menu-btn {
-                    display: block !important;
-                }
-                .nav-menu {
-                    position: fixed;
-                    top: 70px;
-                    left: 0;
-                    width: 100%;
-                    background: var(--bg-primary);
-                    flex-direction: column;
-                    padding: 2rem;
-                    transform: translateX(-100%);
-                    transition: transform 0.3s ease;
-                }
-                .nav-menu.active {
-                    transform: translateX(0);
-                }
-                .nav-menu li {
-                    margin: 1rem 0;
-                }
-            }
-        `;
-        document.head.appendChild(mobileStyle);
-
-        document.querySelector('.header-content').insertBefore(mobileMenuBtn, document.querySelector('.hire-btn'));
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
 
         mobileMenuBtn.addEventListener('click', () => {
-            const navMenu = document.querySelector('.nav-menu');
             navMenu.classList.toggle('active');
-
             const icon = mobileMenuBtn.querySelector('i');
             if (navMenu.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
@@ -1880,7 +2068,7 @@
         // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                document.querySelector('.nav-menu').classList.remove('active');
+                navMenu.classList.remove('active');
                 const icon = mobileMenuBtn.querySelector('i');
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
